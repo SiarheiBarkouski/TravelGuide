@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <NoWin32Manifest>true</NoWin32Manifest>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,12 +23,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="TravelGuide.Core">
-      <HintPath>..\..\..\TravelGuide.Core\TravelGuide.Core\TravelGuide.Core\bin\Debug\netcoreapp2.2\TravelGuide.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="TravelGuide.Core.Common">
-      <HintPath>..\..\..\TravelGuide.Core\TravelGuide.Core\TravelGuide.Core\bin\Debug\netcoreapp2.2\TravelGuide.Core.Common.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\TravelGuide.Core.Common\TravelGuide.Core.Common.csproj">
+      <Private>true</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\TravelGuide.Core\TravelGuide.Core.csproj">
+      <Private>true</Private>
+    </ProjectReference>
   </ItemGroup>
 
 </Project>

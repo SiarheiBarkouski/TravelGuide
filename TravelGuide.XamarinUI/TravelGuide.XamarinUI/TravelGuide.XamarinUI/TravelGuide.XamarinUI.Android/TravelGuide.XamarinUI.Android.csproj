@@ -65,7 +65,7 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="TravelGuide.Core.Common">
-      <HintPath>..\..\..\..\TravelGuide.Core\TravelGuide.Core\TravelGuide.Core\bin\Debug\netcoreapp2.2\TravelGuide.Core.Common.dll</HintPath>
+      <HintPath>..\..\..\..\TravelGuide.WebApi\TravelGuide.Core.Common\bin\Debug\netstandard2.0\TravelGuide.Core.Common.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -27,7 +27,7 @@
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v8.1\Mono.Android.dll</HintPath>
     </Reference>
     <Reference Include="TravelGuide.Core.Common">
-      <HintPath>..\..\..\..\TravelGuide.Core\TravelGuide.Core\TravelGuide.Core\bin\Debug\netcoreapp2.2\TravelGuide.Core.Common.dll</HintPath>
+      <HintPath>..\..\..\..\TravelGuide.WebApi\TravelGuide.Core.Common\bin\Debug\netstandard2.0\TravelGuide.Core.Common.dll</HintPath>
     </Reference>
     <Reference Include="VKontakte.Android">
       <HintPath>C:\Users\Serega\.nuget\packages\xamarin.vkontakte.android\1.6.7\lib\MonoAndroid\VKontakte.Android.dll</HintPath>
