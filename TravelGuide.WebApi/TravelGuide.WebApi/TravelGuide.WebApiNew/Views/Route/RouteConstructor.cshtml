@@ -1,0 +1,100 @@
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@model TravelGuide.WebApiNew.Models.RouteConstructorModel
+
+@{
+    ViewBag.Title = "title";
+    ViewBag.Container = "container";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (Model.Mode == 2)
+{
+    <div class="d-flex flex-row m-1">
+        @Html.DropDownListFor(x => x.Routes, Model.Routes, new { id = "routes", @class = "form-control w-100" })
+    </div>
+}
+
+<div class="m-4" align="center">
+    @using (Html.BeginForm("SaveRoute", "Route", FormMethod.Post, new
+    {
+        @class = "d-flex flex-column align-items-stretch",
+        enctype = "multipart/form-data",
+        style = "width: 600px;"
+    }))
+    {
+        <div class="d-flex flex-row m-1">
+            @Html.ValidationSummary(false, null, new { @class = "text-left text-danger" })
+        </div>
+
+        @Html.HiddenFor(x => x.Id, new { id = "id" })
+        @Html.HiddenFor(x => x.ImageId, new { id = "imageId" })
+        @Html.HiddenFor(x => x.Mode)
+
+        <div class="d-flex flex-row m-1">
+            @Html.LabelFor(x => x.Name, new { @class = "col-form-label w-25" })
+            @Html.TextBoxFor(x => x.Name, null, new { id = "name", @class = "form-control w-75" })
+        </div>
+
+        <div class="d-flex flex-row m-1">
+            @Html.LabelFor(x => x.Description, new { @class = "col-form-label w-25" })
+            @Html.TextAreaFor(x => x.Description, new { id = "description", @class = "form-control w-75" })
+        </div>
+
+        <div class="d-flex flex-row m-1">
+            @Html.LabelFor(x => x.Image, new { @class = "col-form-label w-25" })
+            <input type="file" id="image" name="Image" class="w-75" />
+        </div>
+
+
+        if (Model.ImageId == 0)
+        {
+            <div class="d-flex flex-row m-1">
+                Нет картинки
+            </div>
+        }
+        else
+        {
+            <div class="d-flex flex-row m-1">
+                <img class="img-thumbnail" width="200" height="200" src="@Url.Action("GetRouteImage", "Route",new { Model.ImageId })" />
+            </div>
+        }
+
+
+        <div class="d-flex flex-row m-1">
+            @Html.Label("","City", new { @class = "col-form-label w-25" })
+            @Html.DropDownListFor(x => x.CityId, Model.Cities, "-----Select city-----", new { id = "cities", @class = "form-control w-75" })
+        </div>
+
+        <div class="d-flex flex-row m-1 justify-content-center">
+            <input type="submit" class="btn btn-success m-1" />
+            <input type="reset" class="btn btn-danger m-1" />
+        </div>
+    }
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+
+            $('#routes').on("change",function()
+            {
+                var id = $(this).val();
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("GetRoute","Route")/' + id,
+                    success: function (data) {
+                        var jsonData = JSON.parse(data);
+                        $("#id").val(jsonData.Id);
+                        $("#name").val(jsonData.Name);
+                        $("#description").val(jsonData.Description);
+                        $("#cities").val(jsonData.CityId);
+                        $("#imageId").val(jsonData.ImageId);
+                        $(".img-thumbnail").attr("src", "/Route/GetImage?imageId="+jsonData.ImageId);
+                    }
+                });
+            });
+        })
+    </script>
+}

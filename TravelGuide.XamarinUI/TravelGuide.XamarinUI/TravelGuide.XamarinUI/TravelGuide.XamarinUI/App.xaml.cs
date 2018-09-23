@@ -1,34 +1,59 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+using TravelGuide.Core.Common.Entities;
+using TravelGuide.XamarinUI.Interfaces;
+using TravelGuide.XamarinUI.Views;
+using TravelGuide.XamarinUI.WebApiClients;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace TravelGuide.XamarinUI
 {
-	public partial class App : Application
-	{
-		public App ()
-		{
-			InitializeComponent();
+    public partial class App : Application
+    {
+        private readonly IPreLoadLoginHandler _loginInfoHandler = DependencyService.Get<IPreLoadLoginHandler>();
 
-			MainPage = new TravelGuide.XamarinUI.MainPage();
-		}
+        public App()
+        {
+            InitializeComponent();
+            //MainPage = new AuthorizationPage();
+        }
 
-		protected override void OnStart ()
-		{
-			// Handle when your app starts
-		}
+        public User CurrentUserLoginInfo { get; set; }
 
-		protected override void OnSleep ()
-		{
-			// Handle when your app sleeps
-		}
+        protected override void OnStart()
+        {
+            using (var client = new WebApiClient())
+            {
+                User user;
+                try
+                {
+                    var info = _loginInfoHandler.GetLoginInformation();
+                    user = !string.IsNullOrEmpty(info.SocialId) ? client.GetUserLoginInfo(info.SocialId) : null;
+                    CurrentUserLoginInfo = user;
+                }
+                catch (Exception ex)
+                {
+                    user = null;
+                }
 
-		protected override void OnResume ()
-		{
-			// Handle when your app resumes
-		}
-	}
+
+                if (user != null)
+                {
+                    MainPage = new MainPage(user);
+                }
+                else
+                    MainPage = new AuthorizationPage();
+            }
+        }
+
+        protected override void OnSleep()
+        {
+        }
+
+        protected override void OnResume()
+        {
+        }
+
+    }
 }

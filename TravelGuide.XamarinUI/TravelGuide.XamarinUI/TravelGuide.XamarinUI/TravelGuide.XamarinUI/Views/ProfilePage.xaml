@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:TravelGuide.XamarinUI.CustomControls;assembly=TravelGuide.XamarinUI"
+             xmlns:customViews="clr-namespace:TravelGuide.XamarinUI.Views.SubView.Profile;assembly=TravelGuide.XamarinUI"
+             x:Class="TravelGuide.XamarinUI.Views.ProfilePage">
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+
+            <Frame Grid.Row="0" Padding="0,0,0,0"  HorizontalOptions="FillAndExpand" BorderColor="Black" HasShadow="True">
+                <customControls:GradientColorStack StartColor="#6166DC" EndColor="#EB3A3A" GradientOrientation="Horizontal">
+                    <customControls:CircleImage Source="{Binding User.Picture}" 
+                                        WidthRequest="150" 
+                                        HeightRequest="150" 
+                                        Aspect="AspectFit"
+                                        HorizontalOptions="Center"/>
+                    <Label HorizontalOptions="CenterAndExpand" 
+                   HorizontalTextAlignment="Center" 
+                   Text="{Binding User.Name}" 
+                   FontSize="Large"
+                   TextColor="White" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="History"
+                        FontSize="Medium"
+                        TextColor="White" 
+                        BackgroundColor="Transparent"
+                        Command="{Binding HistoryViewVisible}"/>
+                        <Button Grid.Column="1"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Cards"
+                        FontSize="Medium"
+                        TextColor="White" 
+                        BackgroundColor="Transparent" 
+                        Command="{Binding CardsViewVisible}"/>
+                    </Grid>
+                </customControls:GradientColorStack>
+            </Frame>
+
+            <customViews:HistoryView Grid.Row="1" IsVisible="{Binding IsHistoryVisible}" />
+            <customViews:CardsView Grid.Row="1" IsVisible="{Binding IsCardsVisible}" />
+        </Grid>
+    </ScrollView>
+</ContentPage>

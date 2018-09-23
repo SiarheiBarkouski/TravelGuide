@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TravelGuide.XamarinUI.Views.SubView.Routes.Closest">
+
+    <ScrollView>
+        <StackLayout>
+            <Label Text="{Binding Source={x:Reference Name=routesList}, Path=SelectedItem.Name}"
+                   FontSize="Large" />
+            <ListView x:Name="routesList"
+                      HasUnevenRows="True"
+                      ItemsSource="{Binding Routes}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout>
+                                    <Label Text="{Binding Name}" FontSize="18" />
+                                    <Label Text="{Binding Description}" />
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+
+
+
+</ContentView>

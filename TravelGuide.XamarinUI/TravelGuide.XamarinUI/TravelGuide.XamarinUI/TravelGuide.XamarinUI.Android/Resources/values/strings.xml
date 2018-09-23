@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+<string name="app_name">Travel Guide</string>
+  <string name="facebook_app_id">2031885843502087</string>
+  <string name="fb_login_protocol_scheme">fb2031885843502087</string>
+  <integer name="com_vk_sdk_AppId">6686666</integer>
+  <string name="vk_data_theme">vk6686666</string>
+</resources>

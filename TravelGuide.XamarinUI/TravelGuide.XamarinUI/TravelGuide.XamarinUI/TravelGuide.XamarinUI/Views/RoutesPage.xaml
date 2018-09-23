@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:TravelGuide.XamarinUI.CustomControls;assembly=TravelGuide.XamarinUI"
+             xmlns:customViews="clr-namespace:TravelGuide.XamarinUI.Views.SubView.Routes;assembly=TravelGuide.XamarinUI"
+             x:Class="TravelGuide.XamarinUI.Views.RoutesPage">
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Frame Grid.Row="0" Padding="0,0,0,0"  HorizontalOptions="FillAndExpand" BorderColor="Black" HasShadow="True">
+                <customControls:GradientColorStack Grid.Row="0" StartColor="#6166DC" EndColor="#EB3A3A" GradientOrientation="Horizontal">
+                    <Grid Margin="10" Padding="10" BackgroundColor="White">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="@drawable/search" />
+                        <Entry Grid.Column="1" Placeholder="City" PlaceholderColor="LightGray" />
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Button Grid.Column="0"
+                            Grid.Row="0"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Closest"
+                            FontSize="Medium"
+                            TextColor="White" 
+                            BackgroundColor="Transparent"
+                            Command="{Binding ClosestViewVisible}"/>
+                        <Button Grid.Column="1"
+                            Grid.Row="0"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Best"
+                            FontSize="Medium"
+                            TextColor="White" 
+                            BackgroundColor="Transparent" 
+                            Command="{Binding BestViewVisible}"/>
+                        <Button Grid.Column="2"
+                            Grid.Row="0"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="New"
+                            FontSize="Medium"
+                            TextColor="White" 
+                            BackgroundColor="Transparent" 
+                            Command="{Binding NewViewVisible}"/>
+
+                        <BoxView Grid.Column="0" 
+                             Grid.Row="1" 
+                             IsVisible="{Binding ClosestToggled}"
+                             HeightRequest="5"
+                             HorizontalOptions="FillAndExpand"
+                             BackgroundColor="White"/>
+                        <BoxView Grid.Column="1" 
+                             Grid.Row="1" 
+                             IsVisible="{Binding BestToggled}"
+                             HeightRequest="5" 
+                             HorizontalOptions="FillAndExpand"
+                             BackgroundColor="White" />
+                        <BoxView Grid.Column="2" 
+                             Grid.Row="1" 
+                             IsVisible="{Binding NewToggled}"
+                             HeightRequest="5" 
+                             HorizontalOptions="FillAndExpand"
+                             BackgroundColor="White" />
+                    </Grid>
+                </customControls:GradientColorStack>
+            </Frame>
+
+            <customViews:Closest Grid.Row="1" IsVisible="{Binding ClosestToggled}" />
+            <customViews:Best Grid.Row="1" IsVisible="{Binding BestToggled}" />
+            <customViews:New Grid.Row="1" IsVisible="{Binding NewToggled}" />
+
+        </Grid>
+    </ScrollView>
+</ContentPage>

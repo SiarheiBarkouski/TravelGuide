@@ -1,0 +1,51 @@
+﻿@using TravelGuide.WebApiNew.Helpers
+@using TravelGuide.WebApiNew.Models.GoogleMap
+
+@model TravelGuide.WebApiNew.Models.LocationConstructorModel
+
+@{
+    ViewBag.Container = "container-fluid";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link rel="stylesheet" type="text/css" href="~/css/mapstyle.css" />
+<script type="text/javascript" src="~/js/jquery.googlemaps.js"></script>
+<script src="~/js/Location/LocationConstructor.js"></script>
+<script type="text/javascript" src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+
+
+<div class="d-flex flex-row">
+    <div class="p-2">
+        @Html.GoogleMapEditor("google-map", new Map
+        {
+            routeId = Model.RouteId,
+            editMode = true,
+            locations = Model.Locations,
+            width = 1024,
+            height = 768,
+            searchBox = true
+        })
+    </div>
+    <div class="p-2 flex-fill">
+        <div class="m-auto"><h3 align="center">Locations</h3></div>
+        <ul id="locationsList" class="p-2 list-group"></ul>
+
+        <input id="saveRoute" value="Save route" type="button" class="btn btn-danger" />
+    </div>
+</div>
+
+<style>
+    #locationsList {
+        border: 2px solid black;
+        border-radius: 1%;
+        height: 70%;
+        max-height: 500px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+        #locationsList::-webkit-scrollbar-track:horizontal {
+            display: none;
+        }
+</style>

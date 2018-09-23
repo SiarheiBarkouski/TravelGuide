@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TravelGuide.XamarinUI.Views.AuthorizationPage"
+             BackgroundImage="@drawable/background">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Image Grid.Row="0" Margin="20" Source="@drawable/title"/>
+
+        <Entry Grid.Row="1" Margin="30,10" Placeholder="Type your email" PlaceholderColor="White"/>
+
+        <StackLayout Grid.Row="2" Orientation="Vertical">
+            <!--<Button Command="{Binding VkLoginCommand}" BackgroundColor="Transparent" Image="@drawable/vk" />-->
+            <!--<Button Command="{Binding FacebookLoginCommand}" BackgroundColor="Transparent" Image="@drawable/facebook" />-->
+            <!--<Button Command="{Binding GoogleLoginCommand}" BackgroundColor="Transparent" Image="@drawable/google" />-->
+
+            <Button Command="{Binding VkLoginCommand}" Margin="5,5" HorizontalOptions="Center" WidthRequest="200" BackgroundColor="CornflowerBlue" Text="VKontakte" TextColor="White" CornerRadius="8" />
+            <Button Command="{Binding FacebookLoginCommand}" Margin="5,5" HorizontalOptions="Center" WidthRequest="200" BackgroundColor="RoyalBlue" Text="Facebook" TextColor="White" CornerRadius="8" />
+            <Button Command="{Binding GoogleLoginCommand}" Margin="5,5" HorizontalOptions="Center" WidthRequest="200" BackgroundColor="IndianRed" Text="Google" TextColor="White" CornerRadius="8" />
+
+        </StackLayout>
+    </Grid>
+</ContentPage>
